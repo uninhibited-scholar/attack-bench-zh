@@ -1,0 +1,13 @@
+{
+  "n_scored": 36,
+  "missing_predictions": 0,
+  "technique_precision": 0.78,
+  "technique_recall": 0.582,
+  "technique_f1": 0.667,
+  "top_technique_precision": 0.816,
+  "top_technique_recall": 0.597,
+  "top_technique_f1": 0.69,
+  "tactic_precision": 0.843,
+  "tactic_recall": 0.614,
+  "tactic_f1": 0.711
+}
