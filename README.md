@@ -7,7 +7,7 @@
 
 给一段中文威胁/事件描述，标注其对应的 ATT&CK 技术编号（如 `T1059.001`）。**ATT&CK 编号是封闭词表 → 评分为 exact / partial match，零主观、CI 可担保。** 是检测工程的**上游**（先定 technique，才谈检测规则），与下游规则生成基准（如 CTI-REALM）互补。
 
-> 现状诚实定位：**v0 种子集 36 条、单人标注、关键词基线**——一个**能跑通、有论点、可复现**的早期基准（占位 + 方法验证），尚非大规模权威基准；规模化与多模型基线见 [PLAN.md](PLAN.md)。
+> 现状诚实定位：**v0 种子集 64 条、单人标注、关键词基线**——一个**能跑通、有论点、可复现**的早期基准（占位 + 方法验证），尚非大规模权威基准；规模化与多模型基线见 [PLAN.md](PLAN.md)。
 
 ## 数据
 - `data/bench.jsonl`，v0 共 **36 条**（目标扩至 300+）。覆盖 50 个 ATT&CK 技术、14 个 tactic 大部分阶段；难度 easy/medium/hard。
@@ -26,12 +26,12 @@ python3 scripts/score.py your_predictions.jsonl
 
 ```json
 {
-  "technique_precision": 0.780, "technique_recall": 0.582, "technique_f1": 0.667,
-  "top_technique_f1": 0.690, "tactic_f1": 0.711
+  "technique_precision": 0.719, "technique_recall": 0.402, "technique_f1": 0.516,
+  "top_technique_f1": 0.532, "tactic_f1": 0.550
 }
 ```
 
-**看点**：关键词映射 precision 尚可（0.78）但 **recall 仅 0.58**——大量"需跨阶段推断、或一句话含多个技术"的样本被漏标。**光靠关键词对不齐 ATT&CK**，这正是需要专门评测、并上更强模型的理由。
+**看点**：关键词映射 precision 尚可（0.72）但 **recall 仅 0.40**——大量"需跨阶段推断、或一句话含多个技术"的样本被漏标，且样本越全、recall 掉得越狠。**光靠关键词对不齐 ATT&CK**，这正是需要专门评测、并上更强模型的理由。
 
 ## 质量保证
 `scripts/check_bench.py` + CI 每次提交校验：schema 严格、**每个技术编号必须在官方快照内**、techniques↔tactics 一致、去重、纯净度（**只标技术，不标国家/APT 归因**）。**禁止靠删难例或放宽 gold 骗过校验。**
