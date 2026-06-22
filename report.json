@@ -1,13 +1,14 @@
 {
-  "n_scored": 64,
+  "n_gold": 3,
   "missing_predictions": 0,
-  "technique_precision": 0.719,
-  "technique_recall": 0.402,
-  "technique_f1": 0.516,
-  "top_technique_precision": 0.75,
-  "top_technique_recall": 0.412,
-  "top_technique_f1": 0.532,
-  "tactic_precision": 0.783,
-  "tactic_recall": 0.423,
-  "tactic_f1": 0.55
+  "technique_micro": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  },
+  "top_technique_micro": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  }
 }

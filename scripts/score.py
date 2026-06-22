@@ -1,36 +1,42 @@
 #!/usr/bin/env python3
-"""Score predictions for attack-bench-zh.
-Predictions: JSONL of {"id":..., "techniques":[...]}. Usage: score.py preds.jsonl"""
+"""Score predictions for attack-bench-zh (multi-label technique mapping).
+Usage: python3 scripts/score.py predictions.jsonl
+predictions: one JSON/line {"id":..., "techniques":[...]}"""
 import json, os, sys
-ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-def load(p):
-    d={}
-    for line in open(p,encoding="utf-8"):
-        line=line.strip()
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+def load(path, key):
+    d = {}
+    for line in open(path, encoding="utf-8"):
+        line = line.strip()
         if line:
-            o=json.loads(line); d[o["id"]]=o
+            o = json.loads(line); d[o["id"]] = set(o.get(key, []))
     return d
-def top(t): return t.split(".")[0]
-def prf(tp,fp,fn):
-    P=tp/(tp+fp) if tp+fp else 0.0; R=tp/(tp+fn) if tp+fn else 0.0
-    F=2*P*R/(P+R) if P+R else 0.0; return P,R,F
+
+def top(s): return {t.split(".")[0] for t in s}
+
+def prf(tp, fp, fn):
+    p = tp/(tp+fp) if tp+fp else 0.0
+    r = tp/(tp+fn) if tp+fn else 0.0
+    f = 2*p*r/(p+r) if p+r else 0.0
+    return round(p,3), round(r,3), round(f,3)
+
 def main():
-    if len(sys.argv)<2: print("usage: score.py preds.jsonl"); return 2
-    gold=load(os.path.join(ROOT,"data/bench.jsonl")); pred=load(sys.argv[1])
-    tmap=json.load(open(os.path.join(ROOT,"ref/tech_tactics.json")))
-    miss=[i for i in gold if i not in pred]
-    tp=fp=fn=0; ttp=tfp=tfn=0; atp=afp=afn=0  # technique / top-technique / tactic
-    for i,g in gold.items():
-        G=set(g["techniques"]); P=set(pred.get(i,{}).get("techniques",[]))
-        tp+=len(G&P); fp+=len(P-G); fn+=len(G-P)
-        GT={top(x) for x in G}; PT={top(x) for x in P}
-        ttp+=len(GT&PT); tfp+=len(PT-GT); tfn+=len(GT-PT)
-        GA=set(a for x in G for a in tmap.get(x,[])); PA=set(a for x in P for a in tmap.get(x,[]))
-        atp+=len(GA&PA); afp+=len(PA-GA); afn+=len(GA-PA)
-    out={"n_scored":len(gold),"missing_predictions":len(miss)}
-    for name,v in [("technique",(tp,fp,fn)),("top_technique",(ttp,tfp,tfn)),("tactic",(atp,afp,afn))]:
-        P,R,F=prf(*v); out[f"{name}_precision"]=round(P,3); out[f"{name}_recall"]=round(R,3); out[f"{name}_f1"]=round(F,3)
-    json.dump(out,open(os.path.join(ROOT,"report.json"),"w"),ensure_ascii=False,indent=2)
-    print(json.dumps(out,ensure_ascii=False,indent=2))
+    if len(sys.argv) < 2: print("usage: score.py predictions.jsonl"); return 2
+    gold = load(os.path.join(ROOT,"data","bench.jsonl"), "techniques")
+    pred = load(sys.argv[1], "techniques")
+    tp=fp=fn=0; ttp=tfp=tfn=0; missing=0
+    for gid, g in gold.items():
+        p = pred.get(gid)
+        if p is None: missing += 1; p = set()
+        tp += len(g & p); fp += len(p - g); fn += len(g - p)
+        gt, pt = top(g), top(p)
+        ttp += len(gt & pt); tfp += len(pt - gt); tfn += len(gt - pt)
+    P,R,F = prf(tp,fp,fn); tP,tR,tF = prf(ttp,tfp,tfn)
+    rep = {"n_gold": len(gold), "missing_predictions": missing,
+           "technique_micro": {"precision":P,"recall":R,"f1":F},
+           "top_technique_micro": {"precision":tP,"recall":tR,"f1":tF}}
+    print(json.dumps(rep, ensure_ascii=False, indent=2))
+    open(os.path.join(ROOT,"report.json"),"w",encoding="utf-8").write(json.dumps(rep,ensure_ascii=False,indent=2))
     return 0
-sys.exit(main())
+if __name__ == "__main__": sys.exit(main())
