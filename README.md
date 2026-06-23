@@ -56,6 +56,22 @@ python3 scripts/score.py your_predictions.jsonl
 
 > 诚实定位：v0.4、76 条、单人标注、规则基线——能跑通、有论点、可复现的早期基准（占位 + 方法验证），尚非大规模权威基准。
 
+
+## 跑真实模型基线（排行榜）
+
+```bash
+export OPENAI_API_KEY=sk-...           # 任意 OpenAI 兼容端点：OpenAI / DeepSeek / Qwen / 本地 vLLM
+python3 scripts/run_model.py --model <模型名> [--base-url <端点>]
+python3 scripts/score.py predictions_<模型名>.jsonl
+```
+
+把各模型的 `technique_micro.f1` 填入下表（关键词基线已列，作对照）：
+
+| 模型 | technique F1 | top-technique F1 | 备注 |
+|---|---:|---:|---|
+| keyword baseline | 0.122 | 0.157 | 规则映射，作下限 |
+| _待填_ | | | |
+
 相关作品：[cybersec-qa-dataset-zh](https://github.com/uninhibited-scholar/cybersec-qa-dataset-zh) · [agent-safety-bench-zh](https://github.com/uninhibited-scholar/agent-safety-bench-zh) · [defensive-refusal-bench-zh](https://github.com/uninhibited-scholar/defensive-refusal-bench-zh) · [zh-function-calling-bench](https://github.com/uninhibited-scholar/zh-function-calling-bench)
 
 ---
