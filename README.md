@@ -40,3 +40,17 @@ python3 scripts/score.py your_predictions.jsonl
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)。立场：纯防御 / 检测工程 / 威胁情报研究。
 
 相关作品：[cybersec-qa-dataset-zh](https://github.com/uninhibited-scholar/cybersec-qa-dataset-zh) · [agent-safety-bench-zh](https://github.com/uninhibited-scholar/agent-safety-bench-zh) · [defensive-refusal-bench-zh](https://github.com/uninhibited-scholar/defensive-refusal-bench-zh) · [zh-function-calling-bench](https://github.com/uninhibited-scholar/zh-function-calling-bench)
+
+---
+
+## 🤝 执行 agent 交接清单（干到全勾即 v0 完成）
+
+- [ ] **M1** `docs/prior-art.md` 填完，差异化定位明确（中文 + 开源标注 + 上游 technique 映射）
+- [ ] **M1** `ref/attack_ids.txt` 换成官方 ATT&CK 全量快照（注明来源与版本号）
+- [ ] `data/bench.jsonl` ≥ 300 条，`python3 scripts/check_bench.py` 全绿
+- [ ] `python3 scripts/score.py <pred>` 能产出完整 `report.json`
+- [ ] 关键词基线结果写入 README（≥3 个指标）
+- [ ] CI 绿；README 增 `load_dataset` 一键加载 + 诚实来源说明（谁标的、是否人工复核）
+- [ ] 红线：只标"用了什么技术"，**绝不标国家/组织归因**；拿不准的记入 `docs/open-questions.md` 交出品人裁决
+
+> 不确定的归类**停下问，别硬塞**——一条错标污染整个评分基准。
