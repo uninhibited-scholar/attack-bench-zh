@@ -40,21 +40,21 @@ python3 scripts/score.py your_predictions.jsonl
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)。立场：纯防御 / 检测工程 / 威胁情报研究。
 
 
-## 数据与基线（v0.2）
+## 数据与基线（v0.3）
 
-- `data/bench.jsonl`：**v0.2 种子集 28 条**（单人编写、方法验证、可复现；目标扩至 300+，见 PLAN.md 第 1 节）。覆盖钓鱼/勒索/横向/凭据/C2/外泄/供应链/DoS 等多 tactic。
+- `data/bench.jsonl`：**v0.3 种子集 52 条**（单人编写、方法验证、可复现；目标扩至 300+，见 PLAN.md 第 1 节）。覆盖钓鱼/勒索/横向/凭据/C2/外泄/供应链/DoS 等多 tactic。
 - 字段：`id, text, techniques, tactics, difficulty, rationale, tags`；`techniques` 为合法 ATT&CK 编号（`ref/attack_ids.txt` 校验，M1 换官方全量快照）。
 
 **关键词映射基线**（`baselines/keyword_map.py`）跑全集结果：
 
 ```json
-{ "technique_micro":  {"precision": 0.538, "recall": 0.152, "f1": 0.237},
-  "top_technique_micro": {"precision": 0.692, "recall": 0.196, "f1": 0.305} }
+{ "technique_micro":  {"precision": 0.438, "recall": 0.095, "f1": 0.156},
+  "top_technique_micro": {"precision": 0.562, "recall": 0.122, "f1": 0.2} }
 ```
 
-**看点**：朴素关键词映射 **technique 召回仅 ~0.15**——直白措辞还能蹭对几个，稍一改写就全漏。**这正是"光靠关键词标 ATT&CK 不靠谱、需要专门评测"的理由。**
+**看点**：朴素关键词映射 **technique 召回仅 ~0.10**——直白措辞还能蹭对几个，稍一改写就全漏。**这正是"光靠关键词标 ATT&CK 不靠谱、需要专门评测"的理由。**
 
-> 诚实定位：v0.2、28 条、单人标注、规则基线——能跑通、有论点、可复现的早期基准（占位 + 方法验证），尚非大规模权威基准。
+> 诚实定位：v0.3、52 条、单人标注、规则基线——能跑通、有论点、可复现的早期基准（占位 + 方法验证），尚非大规模权威基准。
 
 相关作品：[cybersec-qa-dataset-zh](https://github.com/uninhibited-scholar/cybersec-qa-dataset-zh) · [agent-safety-bench-zh](https://github.com/uninhibited-scholar/agent-safety-bench-zh) · [defensive-refusal-bench-zh](https://github.com/uninhibited-scholar/defensive-refusal-bench-zh) · [zh-function-calling-bench](https://github.com/uninhibited-scholar/zh-function-calling-bench)
 
