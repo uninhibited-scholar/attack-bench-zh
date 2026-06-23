@@ -1,3 +1,28 @@
 {"id": "cti-0001", "techniques": ["T1059.001", "T1204.002", "T1566.001"]}
 {"id": "cti-0002", "techniques": ["T1021", "T1486", "T1490"]}
 {"id": "cti-0003", "techniques": ["T1190", "T1505.003"]}
+{"id": "cti-0004", "techniques": ["T1021"]}
+{"id": "cti-0005", "techniques": []}
+{"id": "cti-0006", "techniques": []}
+{"id": "cti-0007", "techniques": []}
+{"id": "cti-0008", "techniques": []}
+{"id": "cti-0009", "techniques": []}
+{"id": "cti-0010", "techniques": []}
+{"id": "cti-0011", "techniques": []}
+{"id": "cti-0012", "techniques": []}
+{"id": "cti-0013", "techniques": []}
+{"id": "cti-0014", "techniques": ["T1190"]}
+{"id": "cti-0015", "techniques": []}
+{"id": "cti-0016", "techniques": []}
+{"id": "cti-0017", "techniques": []}
+{"id": "cti-0018", "techniques": []}
+{"id": "cti-0019", "techniques": []}
+{"id": "cti-0020", "techniques": []}
+{"id": "cti-0021", "techniques": []}
+{"id": "cti-0022", "techniques": []}
+{"id": "cti-0023", "techniques": []}
+{"id": "cti-0024", "techniques": ["T1204.002"]}
+{"id": "cti-0025", "techniques": ["T1566.001"]}
+{"id": "cti-0026", "techniques": ["T1486"]}
+{"id": "cti-0027", "techniques": []}
+{"id": "cti-0028", "techniques": []}
