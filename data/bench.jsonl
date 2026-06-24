@@ -74,3 +74,30 @@
 {"id": "cti-0074", "text": "攻击者枚举云租户中启用的服务与资源以摸清攻击面。", "techniques": ["T1526"], "tactics": ["discovery"], "difficulty": "medium", "rationale": "技术映射遵循 ATT&CK 企业矩阵；只标技术不标归因。", "tags": ["cloud-discovery"]}
 {"id": "cti-0075", "text": "攻击者在数据库中创建恶意存储过程作为持久化后门。", "techniques": ["T1505.001"], "tactics": ["persistence"], "difficulty": "hard", "rationale": "技术映射遵循 ATT&CK 企业矩阵；只标技术不标归因。", "tags": ["sql-stored-proc"]}
 {"id": "cti-0076", "text": "木马读取浏览器历史与书签以发现内网系统地址。", "techniques": ["T1217"], "tactics": ["discovery"], "difficulty": "easy", "rationale": "技术映射遵循 ATT&CK 企业矩阵；只标技术不标归因。", "tags": ["browser-discovery"]}
+{"id": "cti-077", "text": "攻击者用 nmap 对目标网段做存活与端口扫描，识别开放的 SSH 与 RDP。", "techniques": ["T1046"], "tactics": ["discovery"], "difficulty": "easy", "rationale": "主动扫描+网络服务发现。", "tags": ["recon"]}
+{"id": "cti-078", "text": "攻击者通过 DCSync 向域控请求复制账户口令哈希。", "techniques": ["T1003.006"], "tactics": ["credential-access"], "difficulty": "hard", "rationale": "DCSync 提取域凭证。", "tags": ["credential"]}
+{"id": "cti-079", "text": "木马在配置文件与脚本中搜索硬编码数据库口令。", "techniques": ["T1552.001"], "tactics": ["credential-access"], "difficulty": "medium", "rationale": "文件中的凭证。", "tags": ["credential"]}
+{"id": "cti-080", "text": "样本安装键盘钩子记录用户输入的账号口令。", "techniques": ["T1056.001"], "tactics": ["credential-access", "collection"], "difficulty": "easy", "rationale": "键盘记录。", "tags": ["credential"]}
+{"id": "cti-081", "text": "攻击者用 fodhelper 绕过 UAC 以高完整性运行载荷。", "techniques": ["T1548.002"], "tactics": ["privilege-escalation", "defense-evasion"], "difficulty": "hard", "rationale": "绕过 UAC 提权。", "tags": ["privesc"]}
+{"id": "cti-082", "text": "载荷窃取并复用 explorer.exe 的访问令牌提升权限。", "techniques": ["T1134"], "tactics": ["defense-evasion", "privilege-escalation"], "difficulty": "hard", "rationale": "访问令牌操纵。", "tags": ["privesc"]}
+{"id": "cti-083", "text": "样本定时截屏并保存为图片外发。", "techniques": ["T1113"], "tactics": ["collection"], "difficulty": "easy", "rationale": "屏幕截图收集。", "tags": ["collection"]}
+{"id": "cti-084", "text": "恶意程序监控剪贴板窃取钱包地址。", "techniques": ["T1115"], "tactics": ["collection"], "difficulty": "medium", "rationale": "剪贴板收集。", "tags": ["collection"]}
+{"id": "cti-085", "text": "载荷把窃取数据伪装成正常请求发往公共代码托管服务作 C2。", "techniques": ["T1102"], "tactics": ["command-and-control"], "difficulty": "hard", "rationale": "利用 Web 服务做 C2。", "tags": ["c2"]}
+{"id": "cti-086", "text": "攻击者退出前批量删除文件服务器数据进行破坏。", "techniques": ["T1485"], "tactics": ["impact"], "difficulty": "medium", "rationale": "数据销毁。", "tags": ["impact"]}
+{"id": "cti-087", "text": "攻击者篡改企业官网首页内容示威。", "techniques": ["T1491.001"], "tactics": ["impact"], "difficulty": "easy", "rationale": "内部站点篡改。", "tags": ["impact"]}
+{"id": "cti-088", "text": "攻击者经被入侵的运维供应商通道接入目标内网。", "techniques": ["T1199"], "tactics": ["initial-access"], "difficulty": "hard", "rationale": "利用信任关系。", "tags": ["initial-access"]}
+{"id": "cti-089", "text": "攻击者在常用开源依赖中植入恶意代码污染下游构建。", "techniques": ["T1195.002"], "tactics": ["initial-access"], "difficulty": "hard", "rationale": "供应链入侵。", "tags": ["supply-chain"]}
+{"id": "cti-090", "text": "恶意软件注册为伪装更新的 Windows 服务实现持久化。", "techniques": ["T1543.003"], "tactics": ["persistence", "privilege-escalation"], "difficulty": "medium", "rationale": "创建服务持久化。", "tags": ["persistence"]}
+{"id": "cti-091", "text": "载荷通过 DLL 侧加载把恶意 DLL 放进合法程序目录被加载。", "techniques": ["T1574.002"], "tactics": ["persistence", "privilege-escalation", "defense-evasion"], "difficulty": "hard", "rationale": "DLL 侧加载。", "tags": ["evasion"]}
+{"id": "cti-092", "text": "攻击者用窃取的 NTLM 哈希做 Pass-the-Hash 横向认证。", "techniques": ["T1550.002"], "tactics": ["defense-evasion", "lateral-movement"], "difficulty": "hard", "rationale": "替代认证材料横向。", "tags": ["lateral"]}
+{"id": "cti-093", "text": "攻击者修改组策略对象下发恶意计划任务到全域。", "techniques": ["T1484.001", "T1053.005"], "tactics": ["defense-evasion", "privilege-escalation", "execution", "persistence"], "difficulty": "hard", "rationale": "域策略修改+计划任务下发。", "tags": ["domain"]}
+{"id": "cti-094", "text": "木马收集浏览器保存的登录数据库文件。", "techniques": ["T1552.001", "T1005"], "tactics": ["credential-access", "collection"], "difficulty": "medium", "rationale": "凭证文件+本地数据收集。", "tags": ["collection"]}
+{"id": "cti-095", "text": "攻击者用 certutil 解码并落地一个被 base64 编码的载荷。", "techniques": ["T1140"], "tactics": ["defense-evasion"], "difficulty": "medium", "rationale": "解码+载荷传输。", "tags": ["evasion"]}
+{"id": "cti-096", "text": "勒索前攻击者用 rclone 将敏感数据批量上传到云存储外泄。", "techniques": ["T1567.002"], "tactics": ["exfiltration"], "difficulty": "hard", "rationale": "外泄至云存储。", "tags": ["exfil"]}
+{"id": "cti-097", "text": "攻击者清空历史并删除落地脚本以反取证。", "techniques": ["T1070.004"], "tactics": ["defense-evasion"], "difficulty": "medium", "rationale": "文件删除反取证。", "tags": ["evasion"]}
+{"id": "cti-098", "text": "攻击者用 ssh 隧道把内网数据库端口转发到公网跳板。", "techniques": ["T1572", "T1021.004"], "tactics": ["command-and-control", "lateral-movement"], "difficulty": "hard", "rationale": "协议隧道+SSH。", "tags": ["tunnel"]}
+{"id": "cti-099", "text": "载荷检测沙箱命中则退出，并多层混淆其字符串。", "techniques": ["T1027"], "tactics": ["defense-evasion"], "difficulty": "medium", "rationale": "混淆规避分析。", "tags": ["evasion"]}
+{"id": "cti-100", "text": "攻击者枚举域内所有计算机对象以规划横向路径。", "techniques": ["T1018"], "tactics": ["discovery"], "difficulty": "easy", "rationale": "远程系统发现。", "tags": ["discovery"]}
+{"id": "cti-101", "text": "木马通过注册表 Run 键与计划任务双重持久化。", "techniques": ["T1547.001", "T1053.005"], "tactics": ["persistence", "privilege-escalation", "execution"], "difficulty": "medium", "rationale": "双重持久化。", "tags": ["persistence"]}
+{"id": "cti-102", "text": "攻击者关闭 Defender 实时防护并清空安全日志。", "techniques": ["T1562.001", "T1070.001"], "tactics": ["defense-evasion"], "difficulty": "medium", "rationale": "禁用防护+清日志。", "tags": ["evasion"]}
+{"id": "cti-103", "text": "攻击者用合法远程管理软件 AnyDesk 维持交互控制。", "techniques": ["T1219"], "tactics": ["command-and-control"], "difficulty": "easy", "rationale": "远程访问软件。", "tags": ["c2"]}
