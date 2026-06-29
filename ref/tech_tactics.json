@@ -180,6 +180,9 @@
   "T1204.002": [
     "execution"
   ],
+  "T1213": [
+    "collection"
+  ],
   "T1219": [
     "command-and-control"
   ],
@@ -203,6 +206,12 @@
     "impact"
   ],
   "T1496": [
+    "impact"
+  ],
+  "T1497": [
+    "defense-evasion"
+  ],
+  "T1499": [
     "impact"
   ],
   "T1505.003": [
