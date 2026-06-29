@@ -7,12 +7,12 @@
 
 给一段中文威胁/事件描述，标注其对应的 ATT&CK 技术编号（如 `T1059.001`）。**ATT&CK 编号是封闭词表 → 评分为 exact / partial match，零主观、CI 可担保。** 是检测工程的**上游**（先定 technique，才谈检测规则），与下游规则生成基准（如 CTI-REALM）互补。
 
-> 现状诚实定位：**v0.4 种子集 76 条、单人标注、关键词基线**——一个**能跑通、有论点、可复现**的早期基准（占位 + 方法验证），尚非大规模权威基准；规模化与多模型基线见 [PLAN.md](PLAN.md)。
+> 现状诚实定位：**v0.5 种子集 143 条、单人标注、关键词基线**——一个**能跑通、有论点、可复现**的早期基准（占位 + 方法验证），尚非大规模权威基准；规模化与多模型基线见 [PLAN.md](PLAN.md)。
 
 ## 数据
-- `data/bench.jsonl`，共 **76 条**（目标扩至 300+）。覆盖钓鱼/勒索/横向/凭据/发现/C2/外泄/供应链/DoS 等多 tactic；难度 easy 17 / medium 39 / hard 20。
-- 字段：`id, text, techniques, tactics, difficulty, rationale, tags`。详见 [docs/taxonomy.md](docs/taxonomy.md)。
-- 技术编号合法性以 `ref/attack_ids.txt`（attack.mitre.org Enterprise 快照）校验。
+- `data/bench.jsonl`，共 **143 条**（目标扩至 300+）。**覆盖全部 14 个 ATT&CK tactic**（钓鱼/勒索/横向/凭据/发现/C2/外泄/供应链/侦察/资源开发/凭据/防御规避/提权/影响）；难度 easy 36 / medium 70 / hard 37。
+- 字段：`id, text, techniques, tactics, difficulty, rationale, tags`。每条 `rationale` 逐个说明各 technique 的映射理由。详见 [docs/taxonomy.md](docs/taxonomy.md)。
+- 技术编号合法性以 `ref/attack_ids.txt`（attack.mitre.org Enterprise 快照）校验；`ref/tech_tactics.json` 提供 technique→tactic 映射。
 
 ## 评测方法
 让被测模型对每条 `text` 输出 `{id, techniques:[...]}`，然后：
@@ -22,14 +22,14 @@ python3 scripts/score.py your_predictions.jsonl
 指标：technique 级 / 顶层技术级 的 micro Precision / Recall / F1。
 
 ## 关键词基线（自带论点）
-朴素「关键词→技术」映射（`baselines/keyword_map.py`）跑全集 76 条：
+朴素「关键词→技术」映射（`baselines/keyword_map.py`）跑全集 143 条：
 
 ```json
-{ "technique_micro":     {"precision": 0.412, "recall": 0.071, "f1": 0.122},
-  "top_technique_micro": {"precision": 0.529, "recall": 0.092, "f1": 0.157} }
+{ "technique_micro":     {"precision": 0.31,  "recall": 0.047, "f1": 0.082},
+  "top_technique_micro": {"precision": 0.483, "recall": 0.073, "f1": 0.127} }
 ```
 
-**看点**：朴素关键词映射 **technique 召回仅 ~0.07**——直白措辞还能蹭对几个，稍一改写、或一句话含多技术就全漏。**光靠关键词对不齐 ATT&CK**，这正是需要专门评测、并上更强模型的理由。
+**看点**：朴素关键词映射 **technique 召回仅 ~0.05**——直白措辞还能蹭对几个，稍一改写、或一句话含多技术就全漏。**光靠关键词对不齐 ATT&CK**，这正是需要专门评测、并上更强模型的理由。
 
 ## 跑真实模型（排行榜）
 ```bash
@@ -40,7 +40,7 @@ python3 scripts/score.py predictions_<模型名>.jsonl
 
 | 模型 | technique F1 | top-technique F1 | 备注 |
 |---|---:|---:|---|
-| keyword baseline | 0.122 | 0.157 | 规则映射，作下限 |
+| keyword baseline | 0.082 | 0.127 | 规则映射，作下限 |
 | _待填_ | | | |
 
 ## 质量保证
