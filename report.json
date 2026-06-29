@@ -1,14 +1,14 @@
 {
-  "n_gold": 206,
+  "n_gold": 300,
   "missing_predictions": 0,
   "technique_micro": {
-    "precision": 0.341,
-    "recall": 0.049,
-    "f1": 0.086
+    "precision": 0.31,
+    "recall": 0.042,
+    "f1": 0.074
   },
   "top_technique_micro": {
-    "precision": 0.512,
-    "recall": 0.074,
-    "f1": 0.129
+    "precision": 0.448,
+    "recall": 0.061,
+    "f1": 0.107
   }
 }

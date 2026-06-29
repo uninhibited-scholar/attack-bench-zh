@@ -14,6 +14,9 @@
   "T1007": [
     "discovery"
   ],
+  "T1014": [
+    "defense-evasion"
+  ],
   "T1016": [
     "discovery"
   ],
@@ -38,6 +41,9 @@
   "T1033": [
     "discovery"
   ],
+  "T1036.005": [
+    "defense-evasion"
+  ],
   "T1041": [
     "exfiltration"
   ],
@@ -52,6 +58,9 @@
   ],
   "T1049": [
     "discovery"
+  ],
+  "T1052.001": [
+    "exfiltration"
   ],
   "T1053.005": [
     "execution",
@@ -69,6 +78,9 @@
   "T1057": [
     "discovery"
   ],
+  "T1059": [
+    "execution"
+  ],
   "T1059.001": [
     "execution"
   ],
@@ -76,6 +88,9 @@
     "execution"
   ],
   "T1059.004": [
+    "execution"
+  ],
+  "T1059.005": [
     "execution"
   ],
   "T1059.006": [
@@ -86,6 +101,9 @@
   ],
   "T1069.002": [
     "discovery"
+  ],
+  "T1070": [
+    "defense-evasion"
   ],
   "T1070.001": [
     "defense-evasion"
@@ -99,6 +117,12 @@
   "T1071.001": [
     "command-and-control"
   ],
+  "T1071.004": [
+    "command-and-control"
+  ],
+  "T1074.001": [
+    "collection"
+  ],
   "T1078": [
     "initial-access",
     "persistence",
@@ -109,6 +133,9 @@
     "discovery"
   ],
   "T1083": [
+    "discovery"
+  ],
+  "T1087": [
     "discovery"
   ],
   "T1087.002": [
@@ -134,6 +161,9 @@
     "defense-evasion"
   ],
   "T1113": [
+    "collection"
+  ],
+  "T1114.001": [
     "collection"
   ],
   "T1114.003": [
@@ -162,11 +192,17 @@
   "T1140": [
     "defense-evasion"
   ],
+  "T1187": [
+    "credential-access"
+  ],
   "T1190": [
     "initial-access"
   ],
   "T1195.002": [
     "initial-access"
+  ],
+  "T1197": [
+    "defense-evasion"
   ],
   "T1199": [
     "initial-access"
@@ -183,12 +219,20 @@
   "T1213": [
     "collection"
   ],
+  "T1217": [
+    "discovery"
+  ],
+  "T1218": [
+    "defense-evasion"
+  ],
   "T1219": [
     "command-and-control"
   ],
+  "T1482": [
+    "discovery"
+  ],
   "T1484.001": [
-    "defense-evasion",
-    "privilege-escalation"
+    "defense-evasion"
   ],
   "T1485": [
     "impact"
@@ -211,8 +255,14 @@
   "T1497": [
     "defense-evasion"
   ],
+  "T1498": [
+    "impact"
+  ],
   "T1499": [
     "impact"
+  ],
+  "T1505.001": [
+    "persistence"
   ],
   "T1505.003": [
     "persistence"
@@ -220,7 +270,24 @@
   "T1518.001": [
     "discovery"
   ],
+  "T1526": [
+    "discovery"
+  ],
+  "T1530": [
+    "collection"
+  ],
+  "T1539": [
+    "credential-access"
+  ],
   "T1543.003": [
+    "persistence",
+    "privilege-escalation"
+  ],
+  "T1546.003": [
+    "persistence",
+    "privilege-escalation"
+  ],
+  "T1547": [
     "persistence",
     "privilege-escalation"
   ],
@@ -239,11 +306,32 @@
   "T1552.001": [
     "credential-access"
   ],
+  "T1556": [
+    "credential-access",
+    "defense-evasion"
+  ],
+  "T1557.001": [
+    "credential-access",
+    "initial-access"
+  ],
+  "T1558.003": [
+    "credential-access",
+    "lateral-movement"
+  ],
   "T1560.001": [
     "collection"
   ],
+  "T1561.001": [
+    "impact"
+  ],
   "T1562.001": [
     "defense-evasion"
+  ],
+  "T1565.001": [
+    "impact"
+  ],
+  "T1566": [
+    "initial-access"
   ],
   "T1566.001": [
     "initial-access"
@@ -263,10 +351,16 @@
   "T1570": [
     "lateral-movement"
   ],
+  "T1571": [
+    "command-and-control"
+  ],
   "T1572": [
     "command-and-control"
   ],
   "T1573": [
+    "command-and-control"
+  ],
+  "T1573.002": [
     "command-and-control"
   ],
   "T1574.002": [
@@ -286,6 +380,9 @@
   "T1589": [
     "reconnaissance"
   ],
+  "T1589.002": [
+    "reconnaissance"
+  ],
   "T1590": [
     "reconnaissance"
   ],
@@ -302,6 +399,9 @@
     "resource-development"
   ],
   "T1611": [
+    "defense-evasion"
+  ],
+  "T1620": [
     "defense-evasion"
   ]
 }
