@@ -8,7 +8,12 @@ Usage:
 Output: predictions_<model>.jsonl  ({"id":..., "techniques":[...]})
 Works with any OpenAI-compatible endpoint (OpenAI / DeepSeek / Qwen / 本地 vLLM …).
 """
-import argparse, json, os, re, sys, urllib.request
+import argparse, json, os, re, ssl, sys, urllib.request
+try:
+    import certifi
+    _SSL_CTX = ssl.create_default_context(cafile=certifi.where())
+except ImportError:
+    _SSL_CTX = None
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SYS = ("你是网络安全威胁情报分析助手。给定一段中文威胁/事件描述，"
@@ -30,8 +35,13 @@ def call(base, key, model, text):
         "messages":[{"role":"system","content":SYS},{"role":"user","content":text}]}).encode()
     req = urllib.request.Request(base.rstrip("/")+"/chat/completions", data=body,
         headers={"Authorization":f"Bearer {key}","Content-Type":"application/json"})
-    with urllib.request.urlopen(req, timeout=120) as r:
-        return json.loads(r.read())["choices"][0]["message"]["content"]
+    for _retry in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=120, context=_SSL_CTX) as r:
+                return json.loads(r.read())["choices"][0]["message"]["content"]
+        except Exception as e:
+            import time; time.sleep(2*(_retry+1))
+    raise RuntimeError("API failed after 3 retries")
 
 def main():
     ap = argparse.ArgumentParser()

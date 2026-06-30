@@ -41,7 +41,8 @@ python3 scripts/score.py predictions_<模型名>.jsonl
 | 模型 | technique F1 | top-technique F1 | 备注 |
 |---|---:|---:|---|
 | keyword baseline | 0.074 | 0.107 | 规则映射，作下限 |
-| _待填_ | | | |
+| doubao-1-5-pro-32k | 0.408 | 0.577 | 火山引擎，2025-01 |
+| glm-4-plus | 0.300 | 0.431 | 智谱，2024 |
 
 ## 质量保证
 `scripts/check_bench.py` + CI 每次提交校验：schema 严格、**每个技术编号必须在官方快照内**、techniques↔tactics 一致、去重、纯净度（**只标技术，不标国家/APT 归因**）。**禁止靠删难例或放宽 gold 骗过校验。**
